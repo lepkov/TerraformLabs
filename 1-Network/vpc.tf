@@ -26,18 +26,38 @@ resource "aws_internet_gateway" "igw" {
   }
 }
 
-# Get a reference to the default route table and manage it
-resource "aws_default_route_table" "default_rt" {
-  # Find the default route table for our VPC
-  default_route_table_id = aws_vpc.main.default_route_table_id
-
-  # Add a route to the Internet Gateway to make it a public route table
+# Create a route table for the public subnets
+resource "aws_route_table" "public_rt" {
+  vpc_id = aws_vpc.main.id
   route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.igw.id
   }
-
   tags = {
     Name = var.routing_table_name
   }
 }
+
+# Associate the route table with all public subnets
+resource "aws_route_table_association" "public" {
+  for_each = aws_subnet.public
+
+  subnet_id      = each.value.id
+  route_table_id = aws_route_table.public_rt.id
+}
+
+# Get a reference to the default route table and manage it
+# resource "aws_default_route_table" "default_rt" {
+#   # Find the default route table for our VPC
+#   default_route_table_id = aws_vpc.main.default_route_table_id
+
+#   # Add a route to the Internet Gateway to make it a public route table
+#   route {
+#     cidr_block = "0.0.0.0/0"
+#     gateway_id = aws_internet_gateway.igw.id
+#   }
+
+#   tags = {
+#     Name = var.routing_table_name
+#   }
+# }
