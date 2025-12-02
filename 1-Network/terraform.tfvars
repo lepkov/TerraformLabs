@@ -15,7 +15,7 @@ availability_zones = {
 
 subnet_cidrs = {
   "subnet1" = "10.10.1.0/24"
-  "subnet2" = "10.10.2.0/24"
+  "subnet2" = "10.10.3.0/24"
   "subnet3" = "10.10.5.0/24"
 }
 
