@@ -21,10 +21,12 @@ This module demonstrates intermediate Terraform concepts including:
 
 ## Files
 
-- `versions.tf`: Terraform and AWS provider version requirements
+- `versions.tf`: Terraform and AWS provider version requirements (AWS >= 6.23.0, Terraform >= 1.5.7)
+- `main.tf`: AWS provider configuration for us-east-1 region
 - `variables.tf`: Input variables for VPC and network configuration
-- `vpc.tf`: Core VPC, subnet, IGW, and routing resources
-- `outputs.tf`: Output values for VPC resources
+- `vpc.tf`: Core VPC, subnet, IGW, routing resources, and route table associations
+- `outputs.tf`: Output values for VPC, subnets, IGW, and route table
+- `terraform.tfvars`: Example values and current configuration for the network deployment
 
 ## Configuration
 
@@ -47,6 +49,7 @@ This module demonstrates intermediate Terraform concepts including:
 | `vpc_id` | The ID of the created VPC |
 | `public_subnet_ids` | Map of public subnet IDs (keyed by subnet name) |
 | `internet_gateway_id` | The ID of the Internet Gateway |
+| `public_route_table_id` | The ID of the public route table |
 
 ## Prerequisites
 

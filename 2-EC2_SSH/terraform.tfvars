@@ -1,0 +1,7 @@
+aws_keypair_name        = "cmtr-rr4mt8nu-keypair"
+aws_instance_name       = "cmtr-rr4mt8nu-ec2"
+aws_security_group_name = "cmtr-rr4mt8nu-sg"
+vpc_name                = "cmtr-rr4mt8nu-vpc"
+project_id              = "cmtr-rr4mt8nu"
+project_name            = "epam-tf-lab"
+instance_type           = "t2.micro"
